@@ -1,0 +1,22 @@
+# Third-party material fetched at deployment time — NEVER commit these.
+# They are owned by ギア (@giaaibusi) / Anhao / basketikun, NOT by this repo.
+/assets/
+/data/
+/img/
+/thumbs/
+/index.html
+/og-cover.jpg
+*.orig.js
+
+# Local runtime / evidence / OS cruft — not part of the source release.
+*.png
+node_modules/
+.env
+*.log
+Thumbs.db
+.DS_Store
+.idea/
+.vscode/
+
+# Test output
+/tests/bridge-proof.png
