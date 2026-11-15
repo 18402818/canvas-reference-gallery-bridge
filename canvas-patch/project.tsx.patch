@@ -1,0 +1,34 @@
+# Patch for basketikun/infinite-canvas — 2 tiny, reversible edits
+#
+# Apply from the repo root of your own fork of infinite-canvas:
+#   git apply canvas-patch/project.tsx.patch
+#   cp canvas-patch/reference-gallery-bridge.tsx web/src/components/canvas/reference-gallery-bridge.tsx
+#
+# To roll back:
+#   git apply -R canvas-patch/project.tsx.patch
+#   rm web/src/components/canvas/reference-gallery-bridge.tsx
+#
+# Verified against infinite-canvas v0.20.0 (main@9cd3dea). If line numbers drift,
+# apply the two hunks by hand: (1) add the import near the other canvas imports,
+# (2) render <ReferenceGalleryBridge getCanvasCenter={getCanvasCenter} /> inside
+# the page's <section>, next to <AssetPickerModal ... />.
+
+diff --git a/web/src/pages/canvas/project.tsx b/web/src/pages/canvas/project.tsx
+--- a/web/src/pages/canvas/project.tsx
++++ b/web/src/pages/canvas/project.tsx
+@@ -75,6 +75,7 @@ import { CanvasPluginManagerModal } from "@/components/canvas/canvas-plugin-mana
+ import { CanvasRefreshShell } from "@/components/canvas/canvas-refresh-shell";
+ import { CanvasTopBar } from "@/components/canvas/canvas-top-bar";
+ import { ConnectionCreateMenu, NodeCreateMenu, type PendingConnectionCreate } from "@/components/canvas/canvas-create-menus";
++import { ReferenceGalleryBridge } from "@/components/canvas/reference-gallery-bridge";
+ import {
+     CanvasNodeType,
+     type CanvasAssistantImage,
+@@ -3470,6 +3471,7 @@ function InfiniteCanvasPage() {
+                 </Modal>
+ 
+                 <AssetPickerModal open={assetPickerOpen} onInsert={handleAssetInsert} onClose={() => setAssetPickerOpen(false)} />
++                <ReferenceGalleryBridge getCanvasCenter={getCanvasCenter} />
+             </section>
+         </main>
+     );
